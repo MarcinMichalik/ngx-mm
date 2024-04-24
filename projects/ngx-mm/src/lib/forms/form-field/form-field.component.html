@@ -1,0 +1,42 @@
+<!-- TODO - to add custom class with defaults - InjectToken with useValue??? -->
+<!-- TODO - to add id (label for="?") -->
+<!-- TODO - to add customize mandatory field (mainly CSS) -->
+<!-- TODO - to show/hide mandatory indicator -->
+<!-- TODO - IMPORTANT - to error parser with defaults - no ideas ??? -->
+<div class="field">
+  <!-- LABEL -->
+  <label>
+    <ng-container *ngTemplateOutlet="formLabel?.templateRef || defaultLabelTemplate"></ng-container>
+    <span style="color: red;font-weight: bold;margin-left: 3px;font-size: 1.2em;" *ngIf="isMandatory">*</span>
+  </label>
+
+  <!-- CONTROL -->
+  <ng-container *ngTemplateOutlet="formControl.templateRef; context: {$implicit: ngControl.control}">
+  </ng-container>
+
+  <!-- Helpers -->
+  <small>
+    <ng-container *ngIf="formHelper?.templateRef">
+      <ng-container *ngTemplateOutlet="formHelper?.templateRef || null"></ng-container>
+    </ng-container>
+  </small>
+
+  <!-- Errors -->
+  <ng-container *ngFor="let error of (ngControl?.errors || {}) | keyvalue">
+    <ng-container *ngIf="ngControl?.invalid && ngControl?.touched">
+      <ng-container [ngSwitch]="error.key">
+        <!-- TODO - IMPORTANT - to error parser with defaults - possible translate!!! - no ideas ??? - idea from PrimeNG? -->
+        <small class="p-error w-full block" *ngSwitchDefault>
+          Unknown error:
+          <code>
+            <pre>{{error.key}}</pre>
+            <pre>{{error.value}}</pre>
+          </code>
+        </small>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+<ng-template #defaultLabelTemplate>
+  {{label}}
+</ng-template>
