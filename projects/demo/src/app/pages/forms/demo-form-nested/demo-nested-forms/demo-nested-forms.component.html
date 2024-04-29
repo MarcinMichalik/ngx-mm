@@ -1,0 +1,13 @@
+<form [formGroup]="myForm">
+  <div class="formgrid grid">
+    <mm-form-field formControlName="firstName" label="Firstname" class="col-12">
+      <ng-template mmFormControl let-control>
+        <input pInputText
+               [formControl]="control"
+               class="w-full"
+               [class.ng-dirty]="control?.touched && control?.invalid"
+               [class.ng-invalid]="control?.touched && control?.invalid">
+      </ng-template>
+    </mm-form-field>
+  </div>
+</form>

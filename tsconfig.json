@@ -12,6 +12,9 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
+      "ngx-mm/*": [
+        "dist/ngx-mm/*"
+      ],
       "ngx-mm": [
         "dist/ngx-mm"
       ]

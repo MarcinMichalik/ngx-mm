@@ -1,0 +1,47 @@
+<div class="select-none">
+  <ul class="list-none p-2 m-0">
+    <li>
+      <div pRipple class="p-3 flex align-items-center justify-content-between text-500 cursor-pointer" pStyleClass="@next" enterClass="hidden" enterActiveClass="slidedown" leaveToClass="hidden" leaveActiveClass="slideup">
+        <span class="font-medium text-900">
+          <i class="pi pi-home mr-3"></i>
+          Getting Started
+        </span>
+        <i class="pi pi-chevron-down ml-3"></i>
+      </div>
+      <ul class="list-none p-0 m-0 overflow-hidden">
+        <li>
+          <a pRipple class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+            <span class="font-medium text-700">Installation</span>
+          </a>
+        </li>
+        <li>
+          <a pRipple class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+            <i class="pi pi-bookmark mr-2 text-700"></i>
+            <span class="font-medium text-700">...</span>
+          </a>
+        </li>
+        <li>
+          <a pRipple class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+            <i class="pi pi-users mr-2 text-700"></i>
+            <span class="font-medium text-700">...</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="list-none p-2 m-0 border-top-1 surface-border">
+    <li>
+      <div pRipple class="p-3 flex align-items-center justify-content-between text-500 cursor-pointer" pStyleClass="@next" enterClass="hidden" enterActiveClass="slidedown" leaveToClass="hidden" leaveActiveClass="slideup">
+        <span class="font-medium">Components</span>
+        <i class="pi pi-chevron-down"></i>
+      </div>
+      <ul class="list-none p-0 m-0 overflow-hidden">
+        <li>
+          <a pRipple [routerLink]="['forms']" class="flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150">
+            <span class="font-medium text-700">Forms</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

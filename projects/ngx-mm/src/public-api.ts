@@ -1,4 +1,5 @@
 /*
  * Public API Surface of ngx-mm
  */
-export * from './lib/forms/index';
+// export * from './lib/forms/public-api';
+export default {};

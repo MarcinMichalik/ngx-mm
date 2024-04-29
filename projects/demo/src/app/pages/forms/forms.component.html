@@ -1,0 +1,38 @@
+<div>
+  <h1>Forms</h1>
+  <p>Simplified work with Angular forms</p>
+
+  <h2>Import</h2>
+  <app-code lang="bash" styleClass="p-0">
+    npm i ngx-mm
+  </app-code>
+
+
+  <form [formGroup]="simpleForm">
+    <div class="formgrid grid">
+      <mm-form-field formControlName="field" label="Field label" class="col-12">
+        <ng-template mmFormControl let-control>
+          <input pInputText
+                 [formControl]="control"
+                 class="w-full"
+                 [class.ng-dirty]="control?.touched && control?.invalid"
+                 [class.ng-invalid]="control?.touched && control?.invalid">
+        </ng-template>
+      </mm-form-field>
+    </div>
+  </form>
+
+  <app-demo-nested-forms></app-demo-nested-forms>
+
+
+
+
+  <h2>Configuration</h2>
+  <h2>Basic</h2>
+  <h2>Custom error message</h2>
+  <h2>Scopes</h2>
+  <h2>Inputs</h2>
+  <h2>Templates</h2>
+  <h2>Class/configurations</h2>
+
+</div>

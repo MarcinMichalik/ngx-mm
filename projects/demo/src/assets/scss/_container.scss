@@ -1,0 +1,56 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+// scss-docs-start spacer-variables-maps
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+) !default;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12 !default;
+$grid-gutter-width:           1.5rem !default;
+$grid-row-columns:            6 !default;
+
+$gutters: $spacers !default;
+
+// Container padding
+
+$container-padding-x: $grid-gutter-width * .5 !default;
+// Prefix for :root CSS variables
+
+$variable-prefix:             bs- !default;
+
+@mixin make-container($gutter: $container-padding-x) {
+  width: 100%;
+  padding-right: var(--#{$variable-prefix}gutter-x, #{$gutter});
+  padding-left: var(--#{$variable-prefix}gutter-x, #{$gutter});
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.grid-container, .grid-container-fluid {
+  @include make-container();
+}
+
+@each $name, $width in $grid-breakpoints {
+  @media (min-width: $width) {
+    .grid-container {
+      max-width: $width;
+    }
+  }
+}
