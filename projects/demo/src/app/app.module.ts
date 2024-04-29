@@ -1,14 +1,24 @@
 import {Injectable, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import {MM_FORMS_CONFIG, MMErrorMessageResolver, MMFormsModule} from 'ngx-mm/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {MMErrorMessageResolver, MMFormsModule} from 'ngx-mm/forms';
 
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 
-class MyErrorResolver implements MMErrorMessageResolver {
+export class CustomMessageResolver implements MMErrorMessageResolver {
   resolveErrorMessage(key: string, value?: any, formControlName?: string | number | null): string {
-    return 'To nie tak';
+    switch (key) {
+      case 'required':
+        return 'This field is required';
+      case 'minlength':
+        return `The min length of ${value.requiredLength} characters is not reached, you typed in ${value.actualLength} characters`;
+      case 'maxlength':
+        return `The max length of ${value.requiredLength} characters is reached, you typed in ${value.actualLength} characters`;
+      default:
+        return 'This field is invalid'
+    }
   }
 }
 
@@ -20,22 +30,19 @@ class MyErrorResolver implements MMErrorMessageResolver {
     BrowserModule,
     AppRoutingModule,
     MMFormsModule.forRoot({
-      fieldClass: 'text-green-900'
+      fieldClass: 'field',
+      errorClass: 'text-red-900',
+      showMandatory: true,
+      mandatorySymbol: '#',
+      invalidOnTouch: true,
+      invalidOnDirty: false,
     }, {
-      // errorMessageResolver: MyErrorResolver
+      errorMessageResolver: CustomMessageResolver
     }),
+    ReactiveFormsModule,
   ],
   providers: [
-    {
-      provide: MM_FORMS_CONFIG,
-      useValue: {
-        fieldClass: 'text-blue-500 col-6'
-      }
-    },
-    {
-      provide: MMErrorMessageResolver,
-      useClass: MyErrorResolver
-    }
+
   ],
   bootstrap: [AppComponent]
 })

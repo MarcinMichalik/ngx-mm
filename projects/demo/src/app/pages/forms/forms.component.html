@@ -1,38 +1,177 @@
-<div>
-  <h1>Forms</h1>
-  <p>Simplified work with Angular forms</p>
+<article>
+  <div class="flex justify-content-between align-items-center">
+    <div>
+      <h1>Forms</h1>
+      <p>Simplified work with Angular forms</p>
+    </div>
+    <div>
+      <p-tag severity="warning"
+             value="DRAFT"
+             pTooltip="Documentation preparation in progress" tooltipPosition="left">
+      </p-tag>
+    </div>
+  </div>
 
-  <h2>Import</h2>
-  <app-code lang="bash" styleClass="p-0">
-    npm i ngx-mm
+
+  <h2>Usage</h2>
+  <app-code lang="typescript" styleClass="p-0">
+    import &#123;MMFormsModule&#125; from 'ngx-mm/forms';
+  </app-code>
+  <p>More about configuration below</p>
+  <app-code lang="typescript" styleClass="p-0">
+    AppModule
   </app-code>
 
 
-  <form [formGroup]="simpleForm">
+  <h3>Basic</h3>
+  <p>Basic usage. Limitations...</p>
+  <div class="surface-card border-1 surface-border border-round-xl p-5 mb-5">
     <div class="formgrid grid">
-      <mm-form-field formControlName="field" label="Field label" class="col-12">
+      <mm-form-field [(ngModel)]="username" label="Username" class="col-12">
         <ng-template mmFormControl let-control>
           <input pInputText
-                 [formControl]="control"
+                 [(ngModel)]="control.value"
                  class="w-full"
                  [class.ng-dirty]="control?.touched && control?.invalid"
                  [class.ng-invalid]="control?.touched && control?.invalid">
         </ng-template>
       </mm-form-field>
     </div>
-  </form>
+  </div>
+  <app-code lang="html" styleClass="p-0">
+    mm-form-field
+  </app-code>
 
-  <app-demo-nested-forms></app-demo-nested-forms>
+  <h3>Reactive forms</h3>
+  <p>Basic usage</p>
+  <div class="surface-card border-1 surface-border border-round-xl p-5 mb-5">
+    <form [formGroup]="simpleForm">
+      <div class="formgrid grid">
+        <mm-form-field formControlName="field" label="Username" class="col-12">
+          <ng-template mmFormControl let-control>
+            <input pInputText
+                   [formControl]="control"
+                   class="w-full"
+                   [class.ng-dirty]="control?.touched && control?.invalid"
+                   [class.ng-invalid]="control?.touched && control?.invalid">
+          </ng-template>
+        </mm-form-field>
+      </div>
+    </form>
+  </div>
+  <app-code lang="html" styleClass="p-0">
+    mm-form-field
+  </app-code>
 
+  <h4>By service</h4>
+  <p>By service...</p>
+  <div class="surface-card border-1 surface-border border-round-xl p-5 mb-5">
+    <form [formGroup]="simpleForm">
+      <div class="formgrid grid">
+        <mm-form-field formControlName="field"
+                       label="Username"
+                       class="col-12"
+                       [showMandatory]="false"
+                       mandatorySymbol="#" labelStyleClass="text-red-500"
+                       [invalidOnTouch]="true">
+          <ng-template mmFormControl let-control>
+            <input pInputText
+                   [formControl]="control"
+                   class="w-full"
+                   [class.ng-dirty]="control?.touched && control?.invalid"
+                   [class.ng-invalid]="control?.touched && control?.invalid">
+          </ng-template>
+          <ng-template mmMmFormLabel let-label>
+            MyLabel is {{label}}
+          </ng-template>
+        </mm-form-field>
+      </div>
+    </form>
+  </div>
+  <app-code lang="html" styleClass="p-0">
+    mm-form-field
+  </app-code>
 
+  <h4>By template</h4>
+  <p>By template...</p>
+  <div class="surface-card border-1 surface-border border-round-xl p-5 mb-5">
+    <form [formGroup]="simpleForm">
+      <div class="formgrid grid">
+        <mm-form-field formControlName="field" label="Username" class="col-12">
+          <ng-template mmFormControl let-control>
+            <input pInputText
+                   [formControl]="control"
+                   class="w-full"
+                   [class.ng-dirty]="control?.touched && control?.invalid"
+                   [class.ng-invalid]="control?.touched && control?.invalid">
+          </ng-template>
+        </mm-form-field>
+      </div>
+    </form>
+  </div>
+  <app-code lang="html" styleClass="p-0">
+    mm-form-field
+  </app-code>
+
+  <h3>Helper text</h3>
+  <p>Helper text...</p>
+  <h4>By Input</h4>
+  <div class="surface-card border-1 surface-border border-round-xl p-5 mb-5">
+    <form [formGroup]="simpleForm">
+      <div class="formgrid grid">
+        <mm-form-field formControlName="field" label="Username" class="col-12" helper="Provide your username">
+          <ng-template mmFormControl let-control>
+            <input pInputText
+                   [formControl]="control"
+                   class="w-full"
+                   [class.ng-dirty]="control?.touched && control?.invalid"
+                   [class.ng-invalid]="control?.touched && control?.invalid">
+          </ng-template>
+        </mm-form-field>
+      </div>
+    </form>
+  </div>
+  <app-code lang="html" styleClass="p-0">
+    mm-form-field
+  </app-code>
+
+  <h4>By Template</h4>
+  <div class="surface-card border-1 surface-border border-round-xl p-5 mb-5">
+    <form [formGroup]="simpleForm">
+      <div class="formgrid grid">
+        <mm-form-field formControlName="field" label="Username" class="col-12" helper="Provide your username">
+          <ng-template mmFormControl let-control>
+            <input pInputText
+                   [formControl]="control"
+                   class="w-full"
+                   [class.ng-dirty]="control?.touched && control?.invalid"
+                   [class.ng-invalid]="control?.touched && control?.invalid">
+          </ng-template>
+        </mm-form-field>
+      </div>
+    </form>
+  </div>
+  <app-code lang="html" styleClass="p-0">
+    mm-form-field
+  </app-code>
+
+  <h3>Mandatory</h3>
+  <p>Mandatory... ReactiveForms...</p>
+
+  <h2>Basic</h2>
+  <h2>Custom error message</h2>
 
 
   <h2>Configuration</h2>
-  <h2>Basic</h2>
-  <h2>Custom error message</h2>
-  <h2>Scopes</h2>
-  <h2>Inputs</h2>
-  <h2>Templates</h2>
-  <h2>Class/configurations</h2>
+  <h3>Application Level</h3>
+  <h3>Module Level</h3>
+  <h3>Component Level</h3>
+  <h3>Template Level</h3>
 
-</div>
+
+  <h2>API</h2>
+  <h3>Inputs</h3>
+  <h3>Templates</h3>
+  <h3>Class/configurations</h3>
+
+</article>

@@ -1,37 +1,9 @@
-import {Component, forwardRef, inject, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {
-  MMFormsModule
-} from 'ngx-mm';
-import {InputTextModule} from 'primeng/inputtext';
-import {MM_FORMS_CONFIG} from '../../../../../ngx-mm/src/lib/forms/configs/mm-config';
-import {MMErrorMessageResolver} from '../../../../../ngx-mm/src/lib/forms/services/mm-error-message-resolver.service';
-import {CodeModule} from '../../shared/code/code.module';
-import {DemoFormNestedModule} from './demo-form-nested/demo-form-nested.module';
-
-
+import {Component, inject, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
 
 
 @Component({
   selector: 'app-forms',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    MMFormsModule,
-    DemoFormNestedModule,
-    CodeModule
-  ],
-  providers: [
-    {
-      provide: MM_FORMS_CONFIG,
-      useValue: {
-        fieldClass: 'text-red-500'
-      }
-    }
-  ],
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.scss']
 })
@@ -46,6 +18,7 @@ export class FormsComponent implements OnInit {
       Validators.maxLength(5)
     ])]
   });
+  username: any;
 
 
   constructor() { }
@@ -53,4 +26,30 @@ export class FormsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  code = `
+  @NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MMFormsModule.forRoot({
+      fieldClass: 'text-green-900'
+    }, {
+      // errorMessageResolver: MyErrorResolver
+    }),
+  ],
+  providers: [
+    {
+      provide: MM_FORMS_CONFIG,
+      useValue: {
+        fieldClass: 'text-blue-500 col-6'
+      }
+    },
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+  `;
 }
