@@ -290,5 +290,5 @@ export abstract class MMErrorMessageResolver {
 # Documentation tools to check
 * [Docusaurus](https://docusaurus.io/)
 * [StoryBook](https://storybook.js.org/)
-* !!! [ng-doc](https://ng-doc.com/)
+* !!! [ng-doc](https://ng-doc.com/) - Angular min version 15
 * [compodoc](https://compodoc.app/)
