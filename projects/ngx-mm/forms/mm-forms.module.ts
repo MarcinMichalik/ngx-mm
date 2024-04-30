@@ -1,13 +1,13 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {MM_FORMS_CONFIG, MMFormsConfig, MMProvidersToken} from './configs/mm-config';
 import {MMFormControlDirective} from './directives/mm-form-control.directive';
+import {MMFormErrorDirective} from './directives/mm-form-error.directive';
 import {MMFormHelperDirective} from './directives/mm-form-helper.directive';
 import {MMFormLabelDirective} from './directives/mm-form-label.directive';
+import {MMFormMandatoryDirective} from './directives/mm-form-mandatory.directive';
 import {MMFormField} from './mm-form-field';
 import {MMDefaultErrorMessageResolver, MMErrorMessageResolver} from './services/mm-error-message-resolver.service';
-import {MMFormErrorDirective} from './directives/mm-form-error.directive';
-
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import {MMFormErrorDirective} from './directives/mm-form-error.directive';
     MMFormControlDirective,
     MMFormLabelDirective,
     MMFormHelperDirective,
-    MMFormErrorDirective
+    MMFormErrorDirective,
+    MMFormMandatoryDirective
   ],
   imports: [
     CommonModule

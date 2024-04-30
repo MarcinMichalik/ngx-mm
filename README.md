@@ -278,6 +278,8 @@ export abstract class MMErrorMessageResolver {
 * [ ] Prepare documentation with showcase on github project pages
 
 ## Ideas for the future
+* LabelResolver by ngControl name (translation?)???
+  * Prefix key - how?
 * PrimeNG Table - Parser fo (Table)LazyLoadEvent to:
   * Parse to HttpParams (simple and extended (with matchMode)) - mainly for SpringController request params
   * Parse to RouterParams -> LazyLoadEvent -> RouterParams -> HttpParams (table state (page, filter, sort) as RouterParams)
@@ -285,3 +287,8 @@ export abstract class MMErrorMessageResolver {
 * DynamicDialog wrapper - 
 * ...
 
+# Documentation tools to check
+* [Docusaurus](https://docusaurus.io/)
+* [StoryBook](https://storybook.js.org/)
+* !!! [ng-doc](https://ng-doc.com/)
+* [compodoc](https://compodoc.app/)
