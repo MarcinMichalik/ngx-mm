@@ -26,12 +26,12 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
 @Component({
   selector: 'mm-form-field',
   template: `
-    <div [class]="styleClass" [style]="style">
+    <div [ngClass]="styleClass" [style]="style">
       <!-- Standard order - LABEL -> CONTROL -->
       <ng-container *ngIf="!reverseLabelControl">
         <!-- LABEL -->
         <ng-container [ngTemplateOutlet]="formLabel?.templateRef || defaultLabelTemplate"
-                      [ngTemplateOutletContext]="{$implicit: label, id: id || ngControl?.name, mandatory: isMandatory, labelClass, labelStyle}">
+                      [ngTemplateOutletContext]="{$implicit: label, id: id || ngControl?.name, mandatory: isMandatory, showMandatory, mandatorySymbol}">
         </ng-container>
 
         <!-- CONTROL -->
@@ -49,13 +49,13 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
 
         <!-- LABEL -->
         <ng-container [ngTemplateOutlet]="formLabel?.templateRef || defaultLabelTemplate"
-                      [ngTemplateOutletContext]="{$implicit: label, id: id || ngControl?.name, mandatory: isMandatory, labelClass, labelStyle}">
+                      [ngTemplateOutletContext]="{$implicit: label, id: id || ngControl?.name, mandatory: isMandatory,showMandatory, mandatorySymbol}">
         </ng-container>
       </ng-container>
 
       <!-- Helpers -->
-      <ng-container [ngTemplateOutlet]="formHelper?.templateRef || defaultLabelTemplate"
-                    [ngTemplateOutletContext]="{$implicit: helper, helperStyle, helperClass}">
+      <ng-container [ngTemplateOutlet]="formHelper?.templateRef || defaultHelperTemplate"
+                    [ngTemplateOutletContext]="{$implicit: helper}">
       </ng-container>
 
       <!-- Errors -->
@@ -65,36 +65,40 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
           || (ngControl?.invalid && (invalidOnTouch && ngControl?.touched))
           || (ngControl?.invalid && (invalidOnDirty && ngControl?.dirty))">
           <ng-container [ngTemplateOutlet]="formError?.templateRef || defaultErrorTemplate"
-                        [ngTemplateOutletContext]="{$implicit: errorMessageResolver.resolveErrorMessage(error.key, error.value, ngControl?.name)}">
+                        [ngTemplateOutletContext]="{$implicit: errorMessageResolver.resolveErrorMessage(error.key, error.value, ngControl?.name), key: error.key, value: error.value, controlName: ngControl?.name}">
           </ng-container>
         </ng-container>
       </ng-container>
     </div>
 
     <!-- Default templates -->
-    <ng-template #defaultLabelTemplate let-label let-id="id" let-mandatory="mandatory">
-      <label [attr.for]="id" [class]="labelClass" [style]="labelStyle">
+    <ng-template #defaultLabelTemplate let-label
+                 let-id="id"
+                 let-mandatory="mandatory"
+                 let-showMandatory="showMandatory"
+                 let-mandatorySymbol="mandatorySymbol">
+      <label [attr.for]="id" [ngClass]="labelClass" [style]="labelStyle">
         {{ label }}
         <ng-container [ngTemplateOutlet]="formMandatory?.templateRef || defaultMandatoryTemplate"
-                      [ngTemplateOutletContext]="{$implicit: mandatory, showMandatory, mandatorySymbol, mandatoryStyle, mandatoryClass}">
+                      [ngTemplateOutletContext]="{$implicit: mandatory, showMandatory, mandatorySymbol}">
         </ng-container>
       </label>
     </ng-template>
     <ng-template #defaultMandatoryTemplate
                  let-mandatory
                  let-showMandatory="showMandatory"
-                 let-mandatorySymbol="mandatorySymbol"
-                 let-mandatoryStyle="mandatoryStyle"
-                 let-mandatoryClass="mandatoryClass">
-      <span [style]="mandatoryStyle" *ngIf="mandatory && showMandatory">
+                 let-mandatorySymbol="mandatorySymbol">
+        <span [style]="mandatoryStyle" [ngClass]="mandatoryClass" *ngIf="mandatory && showMandatory">
           {{ mandatorySymbol }}
         </span>
     </ng-template>
-    <ng-template #defaultHelperTemplate>
-      <small [class]="mmFormsConfig.helperClass"></small>
+    <ng-template #defaultHelperTemplate let-helper>
+      <small [ngClass]="helperClass" [style]="helperStyle">
+        {{helper}}
+      </small>
     </ng-template>
     <ng-template #defaultErrorTemplate let-error>
-      <small [class]="mmFormsConfig.errorClass">
+      <small [ngClass]="errorClass" [style]="errorStyle">
         {{ error }}
       </small>
     </ng-template>
@@ -111,11 +115,11 @@ export class MMFormField implements ControlValueAccessor {
 
   // Inputs
   @Input('label') label?: string;
-  @Input('id') id?: string; // TODO - default ngControl?.name????
+  @Input('id') id?: string = this.ngControl?.name as string;
   @Input('helper') helper?: string;
-  @Input('invalidOnTouch') invalidOnTouch: boolean = this.mmFormsConfig.invalidOnTouch || true;
-  @Input('invalidOnDirty') invalidOnDirty: boolean = this.mmFormsConfig.invalidOnDirty || true;
-  @Input('reverseLabelControl') reverseLabelControl: boolean = this.mmFormsConfig.reverseLabelControl || false;
+  @Input('invalidOnTouch') invalidOnTouch: boolean = (this.mmFormsConfig.invalidOnTouch!=null) ? this.mmFormsConfig.invalidOnTouch : true;
+  @Input('invalidOnDirty') invalidOnDirty: boolean = (this.mmFormsConfig.invalidOnDirty!=null) ? this.mmFormsConfig.invalidOnDirty : false;
+  @Input('reverseLabelControl') reverseLabelControl: boolean = (this.mmFormsConfig.reverseLabelControl!=null) ? this.mmFormsConfig.reverseLabelControl : false;
 
   // Inputs customizations
   // General
@@ -125,6 +129,7 @@ export class MMFormField implements ControlValueAccessor {
   // Label
   @Input('labelStyle') labelStyle?: string = this.mmFormsConfig.labelStyle;
   @Input('labelClass') labelClass?: string = this.mmFormsConfig.labelClass;
+
   // Helper
   @Input('helperStyle') helperStyle?: string = this.mmFormsConfig.helperStyle;
   @Input('helperClass') helperClass?: string = this.mmFormsConfig.helperClass;
@@ -138,7 +143,7 @@ export class MMFormField implements ControlValueAccessor {
   @Input('mandatorySymbol') mandatorySymbol?: string = this.mmFormsConfig.mandatorySymbol || '*';
   @Input('mandatoryStyle') mandatoryStyle?: string = this.mmFormsConfig.mandatoryStyle || '';
   @Input('mandatoryClass') mandatoryClass?: string = this.mmFormsConfig.mandatoryClass || '';
-  @Input('showMandatory') showMandatory?: boolean = this.mmFormsConfig.showMandatory || true;
+  @Input('showMandatory') showMandatory?: boolean = (this.mmFormsConfig.showMandatory!=null) ? this.mmFormsConfig.showMandatory : true;
 
   // Content query
   @ContentChild(MMFormControlDirective) formControl!: MMFormControlDirective;

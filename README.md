@@ -1,5 +1,12 @@
 # ngx-mm
 
+<br />
+<p align="center">
+ <img width="50%" height="50%" src="./logo-design/logo-svg/ngx-mm_sm.svg">
+</p>
+
+<h2></h2>
+
 ngx-mm is an Angular developers toolkit for simplified Angular application development.
 
 I develop many applications and notice a lot of repeating patterns that I decided to move to a separate library. You can see a lot of connection to PrimeNG as I mainly use it in my Angular applications. If you see potential to be used with another library, don't hesitate to use it. If you find a bug or have an idea for improvement, you can create an issue with a good description.
@@ -225,12 +232,71 @@ If providers and inputs are not enough, you can use templates to modify the comp
 
 ##### Templates
 
-| Name(directive) | Parameters                                            | Description |
-|-----------------|-------------------------------------------------------|-------------|
-| mmFromControl   | `{$implicit: AbstractControl}`                        | _TODO_      |
-| mmFromLabel     | `{$implicit: string, id: string, mandatory: boolean}` | _TODO_      |
-| mmFromHelper    | `{$implicit: string}`                                 | _TODO_      |
-| mmFromError     | `{$implicit: string}`                                 | _TODO_      |
+###### mmFormControl
+Template displaying form control. **Required**
+```html
+<ng-template mmFormControl let-control></ng-template>
+```
+Context
+
+| Name    | Type            | Implicit |
+|---------|-----------------|----------|
+| control | AbstractControl | true     |
+
+###### mmFormLabel
+Template displaying form label.
+```html
+<ng-template mmFormLabel let-label></ng-template>
+```
+Context
+
+| Name            | Type    | Implicit |
+|-----------------|---------|----------|
+| label           | string  | true     |
+| id              | string  | false    |
+| mandatory       | boolean | false    |
+| showMandatory   | boolean | false    |
+| mandatorySymbol | string  | false    |
+
+###### mmFormMandatory
+Template displaying form mandatory.
+```html
+<ng-template mmFormMandatory let-mandatory></ng-template>
+```
+Context
+
+| Name            | Type    | Implicit |
+|-----------------|---------|----------|
+| mandatory       | boolean | true     |
+| showMandatory   | boolean | false    |
+| mandatorySymbol | string  | false    |
+
+###### mmFormHelper
+Template displaying form helper.
+```html
+<ng-template mmFormHelper let-helper></ng-template>
+```
+
+Context
+
+| Name            | Type    | Implicit |
+|-----------------|---------|----------|
+| helper          | string  | true     |
+
+###### mmFormError
+Template displaying errors
+```html
+<ng-template mmFormError></ng-template>
+```
+Context
+
+| Name        | Type   | Implicit |
+|-------------|--------|----------|
+| message     | string | true     |
+| key         | string | false    |
+| value       | string | false    |
+| controlName | string | false    |
+
 
 ##### Types
 `MMConfig`
@@ -275,16 +341,27 @@ export abstract class MMErrorMessageResolver {
 ```
 
 ## RoadMap
-* [ ] Prepare documentation with showcase on github project pages
+* [ ] PrimeNG LazyLoadEvent parser to HttpParams and RouteParams
+  * [ ] Simple parser (without matchMode)
+  * [ ] Advance parser (with matchModes) - *search ideas/patterns* - focus on Spring Controllers
+  * [ ] From RouteParams to filters (store state table in queryString)
+
+## TODO
+* [ ] Add default config
+* [ ] Add default PrimeNG config
+* [ ] Add test config
+* [ ] Add default test service config
+* [ ] Try simplified, improve clean form-field
+* [ ] Finish documentation
+* [ ] Test [Codecov](https://about.codecov.io/)
+* [ ] Consider GitHub actions to build and publish package
+* [ ] Add docs page with samples/playground - ng-doc (after update to Angular 15)
 
 ## Ideas for the future
 * LabelResolver by ngControl name (translation?)???
   * Prefix key - how?
-* PrimeNG Table - Parser fo (Table)LazyLoadEvent to:
-  * Parse to HttpParams (simple and extended (with matchMode)) - mainly for SpringController request params
-  * Parse to RouterParams -> LazyLoadEvent -> RouterParams -> HttpParams (table state (page, filter, sort) as RouterParams)
 * Try extends @angular/form (label, mandatory?...)
-* DynamicDialog wrapper - 
+* DynamicDialog wrapper - ?
 * ...
 
 # Documentation tools to check

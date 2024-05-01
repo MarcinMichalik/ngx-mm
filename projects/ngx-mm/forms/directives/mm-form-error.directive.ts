@@ -1,7 +1,7 @@
 import {Directive, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[mmMmFormError]'
+  selector: '[mmFormError]'
 })
 export class MMFormErrorDirective {
 

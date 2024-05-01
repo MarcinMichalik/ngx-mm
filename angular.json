@@ -29,7 +29,10 @@
           "options": {
             "main": "projects/ngx-mm/src/test.ts",
             "tsConfig": "projects/ngx-mm/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-mm/karma.conf.js"
+            "karmaConfig": "projects/ngx-mm/karma.conf.js",
+            "include": [
+              "../forms/**/**.spec.ts"
+            ]
           }
         }
       }
