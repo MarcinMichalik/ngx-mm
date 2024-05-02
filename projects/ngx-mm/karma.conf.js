@@ -29,14 +29,16 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'text-summary' },
+        { type: 'lcovonly' }
       ]
     },
-    coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/ngx-mm'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
-    },
+    // coverageReporter: {
+    //   dir: require('path').join(__dirname, '../../coverage/ngx-mm'),
+    //   subdir: '.',
+    //   reports: ['html', 'lcovonly', 'text-summary'],
+    //   // fixWebpackSourcePaths: true
+    // },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

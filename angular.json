@@ -6,7 +6,7 @@
     "ngx-mm": {
       "projectType": "library",
       "root": "projects/ngx-mm",
-      "sourceRoot": "projects/ngx-mm/src",
+      "sourceRoot": "projects/ngx-mm",
       "prefix": "mm",
       "architect": {
         "build": {
@@ -29,10 +29,7 @@
           "options": {
             "main": "projects/ngx-mm/src/test.ts",
             "tsConfig": "projects/ngx-mm/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-mm/karma.conf.js",
-            "include": [
-              "../forms/**/**.spec.ts"
-            ]
+            "karmaConfig": "projects/ngx-mm/karma.conf.js"
           }
         }
       }
