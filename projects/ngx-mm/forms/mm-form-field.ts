@@ -124,7 +124,7 @@ export class MMFormField implements ControlValueAccessor {
   // Inputs customizations
   // General
   @Input('style') style?: string = this.mmFormsConfig.style;
-  @Input('styleClass') styleClass?: string = this.mmFormsConfig.fieldClass || '';
+  @Input('styleClass') styleClass?: string = this.mmFormsConfig.fieldClass;
 
   // Label
   @Input('labelStyle') labelStyle?: string = this.mmFormsConfig.labelStyle;
