@@ -353,9 +353,16 @@ export abstract class MMErrorMessageResolver {
 * [ ] Add default test service config
 * [ ] Try simplified, improve clean form-field
 * [ ] Finish documentation
-* [ ] Test [Codecov](https://about.codecov.io/)
+* [x] Test [Codecov](https://about.codecov.io/)
 * [ ] Consider GitHub actions to build and publish package
+* [ ] package.json settings for NPM (version, name, description, urls, tags/categories...)
 * [ ] Add docs page with samples/playground - ng-doc (after update to Angular 15)
+* [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables...
+* [ ] GitHub settings
+  * Protected branch
+  * Templates (issue, PR, ...)
+  * LICENSE
+  * CONTRIBUTING
 
 ## Ideas for the future
 * LabelResolver by ngControl name (translation?)???

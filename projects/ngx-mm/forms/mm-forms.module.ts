@@ -26,7 +26,9 @@ import {MMDefaultErrorMessageResolver, MMErrorMessageResolver} from './services/
     MMFormField,
     MMFormControlDirective,
     MMFormLabelDirective,
-    MMFormHelperDirective
+    MMFormHelperDirective,
+    MMFormErrorDirective,
+    MMFormMandatoryDirective
   ],
 })
 export class MMFormsModule {

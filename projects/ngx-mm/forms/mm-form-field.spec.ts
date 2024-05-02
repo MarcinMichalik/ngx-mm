@@ -1,14 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {MM_FORMS_CONFIG, MMFormsConfig} from './configs/mm-config';
-import {MMFormControlDirective} from './directives/mm-form-control.directive';
-import {MMFormErrorDirective} from './directives/mm-form-error.directive';
-import {MMFormHelperDirective} from './directives/mm-form-helper.directive';
-import {MMFormLabelDirective} from './directives/mm-form-label.directive';
-
-import {MMFormField} from './mm-form-field';
+import {MMFormsModule} from './mm-forms.module';
 import {MMDefaultErrorMessageResolver, MMErrorMessageResolver} from './services/mm-error-message-resolver.service';
 
 @Component({
@@ -58,8 +53,7 @@ class TestMMFormFieldComponent {
                      [mandatorySymbol]="mandatorySymbol"
                      [mandatoryStyle]="mandatoryStyle"
                      [mandatoryClass]="mandatoryClass"
-                     [showMandatory]="showMandatory"
-                     >
+                     [showMandatory]="showMandatory">
         <ng-template mmFormControl let-control>
           <input [formControl]="control">
         </ng-template>
@@ -114,9 +108,7 @@ class InputTestMMFormFieldComponent {
 @Component({
   template: `
     <form [formGroup]="formGroup">
-      <mm-form-field formControlName="firstName"
-                     label="MyLabel"
-                     helper="MyHelper">
+      <mm-form-field formControlName="firstName" label="MyLabel" helper="MyHelper">
         <ng-template mmFormLabel let-label
                      let-id="id"
                      let-mandatory="mandatory"
@@ -204,15 +196,11 @@ describe("MMFormField", () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
-          MMFormField,
           TestMMFormFieldComponent,
-          MMFormControlDirective,
-          MMFormLabelDirective,
-          MMFormHelperDirective,
-          MMFormErrorDirective
         ],
         imports: [
-          ReactiveFormsModule
+          ReactiveFormsModule,
+          MMFormsModule.forRoot({}, {}),
         ],
         providers: [
           {
@@ -321,26 +309,15 @@ describe("MMFormField", () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
-          MMFormField,
           InputTestMMFormFieldComponent,
-          MMFormControlDirective,
-          MMFormLabelDirective,
-          MMFormHelperDirective,
-          MMFormErrorDirective
         ],
         imports: [
-          ReactiveFormsModule
+          ReactiveFormsModule,
+          MMFormsModule.forRoot({}, {
+            errorMessageResolver: MMDefaultErrorMessageResolver,
+          }),
         ],
-        providers: [
-          {
-            provide: MMErrorMessageResolver,
-            useClass: MMDefaultErrorMessageResolver
-          },
-          {
-            provide: MM_FORMS_CONFIG,
-            useValue: {},
-          }
-        ],
+        providers: [],
         schemas: [],
       }).compileComponents();
       fixture = TestBed.createComponent(InputTestMMFormFieldComponent);
@@ -519,27 +496,14 @@ describe("MMFormField", () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
-          MMFormField,
           TemplateTestMMFormFieldComponent,
-          MMFormControlDirective,
-          MMFormLabelDirective,
-          MMFormHelperDirective,
-          MMFormErrorDirective
         ],
         imports: [
-          ReactiveFormsModule
+          ReactiveFormsModule,
+          MMFormsModule.forRoot(testConfig, {
+
+          }),
         ],
-        providers: [
-          {
-            provide: MMErrorMessageResolver,
-            useClass: MMDefaultErrorMessageResolver
-          },
-          {
-            provide: MM_FORMS_CONFIG,
-            useValue: testConfig,
-          }
-        ],
-        schemas: [],
       }).compileComponents();
       fixture = TestBed.createComponent(TemplateTestMMFormFieldComponent);
       component = fixture.componentInstance;
@@ -572,8 +536,6 @@ describe("MMFormField", () => {
 
     it('should error template', () => {
       fixture.detectChanges();
-
-      const els = fixture.debugElement.queryAll(By.css('small'));
 
       const error = fixture.debugElement.query(By.css('#error'));
       expect(component.formGroup.invalid).toBeTrue();
