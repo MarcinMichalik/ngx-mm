@@ -27,30 +27,31 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
   selector: 'mm-form-field',
   template: `
     <div [ngClass]="styleClass" [style]="style">
-      <!-- Standard order - LABEL -> CONTROL -->
-      <ng-container *ngIf="!reverseLabelControl">
-        <!-- LABEL -->
+      <ng-template #label>
         <ng-container [ngTemplateOutlet]="formLabel?.templateRef || defaultLabelTemplate"
-                      [ngTemplateOutletContext]="{$implicit: label, id: id || ngControl?.name, mandatory: isMandatory, showMandatory, mandatorySymbol}">
+                      [ngTemplateOutletContext]="labelTemplateContext">
         </ng-container>
-
-        <!-- CONTROL -->
+      </ng-template>
+      <ng-template #control>
         <ng-container [ngTemplateOutlet]="formControl.templateRef"
                       [ngTemplateOutletContext]="{$implicit: ngControl?.control}">
         </ng-container>
+      </ng-template>
+
+      <!-- Standard order - LABEL -> CONTROL -->
+      <ng-container *ngIf="!reverseLabelControl">
+        <!-- LABEL -->
+        <ng-container [ngTemplateOutlet]="label"></ng-container>
+        <!-- CONTROL -->
+        <ng-container [ngTemplateOutlet]="control"></ng-container>
       </ng-container>
 
       <!-- Revers order - CONTROL -> LABEL -->
       <ng-container *ngIf="reverseLabelControl">
         <!-- CONTROL -->
-        <ng-container [ngTemplateOutlet]="formControl.templateRef"
-                      [ngTemplateOutletContext]="{$implicit: ngControl?.control}">
-        </ng-container>
-
+        <ng-container [ngTemplateOutlet]="control"></ng-container>
         <!-- LABEL -->
-        <ng-container [ngTemplateOutlet]="formLabel?.templateRef || defaultLabelTemplate"
-                      [ngTemplateOutletContext]="{$implicit: label, id: id || ngControl?.name, mandatory: isMandatory,showMandatory, mandatorySymbol}">
-        </ng-container>
+        <ng-container [ngTemplateOutlet]="label"></ng-container>
       </ng-container>
 
       <!-- Helpers -->
@@ -60,12 +61,14 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
 
       <!-- Errors -->
       <ng-container *ngFor="let error of (ngControl?.errors || {}) | keyvalue">
-        <ng-container
-          *ngIf="(ngControl?.invalid && !invalidOnTouch && !invalidOnDirty)
-          || (ngControl?.invalid && (invalidOnTouch && ngControl?.touched))
-          || (ngControl?.invalid && (invalidOnDirty && ngControl?.dirty))">
+        <ng-container *ngIf="showError">
           <ng-container [ngTemplateOutlet]="formError?.templateRef || defaultErrorTemplate"
-                        [ngTemplateOutletContext]="{$implicit: errorMessageResolver.resolveErrorMessage(error.key, error.value, ngControl?.name), key: error.key, value: error.value, controlName: ngControl?.name}">
+                        [ngTemplateOutletContext]="{
+                          $implicit: errorMessageResolver.resolveErrorMessage(error.key, error.value, ngControl?.name),
+                          key: error.key,
+                          value: error.value,
+                          controlName: ngControl?.name
+                        }">
           </ng-container>
         </ng-container>
       </ng-container>
@@ -110,16 +113,13 @@ export class MMFormField implements ControlValueAccessor {
   // Angular v15 - standalone is stable!!!!
   // https://netbasal.com/forwarding-form-controls-to-custom-control-components-in-angular-701e8406cc55
 
-  // TODO - HTML arias
-  // TODO - add separate component form radio/checkbox??? Maybe reverse label and control will be enough
-
   // Inputs
   @Input('label') label?: string;
   @Input('id') id?: string = this.ngControl?.name as string;
   @Input('helper') helper?: string;
-  @Input('invalidOnTouch') invalidOnTouch: boolean = (this.mmFormsConfig.invalidOnTouch!=null) ? this.mmFormsConfig.invalidOnTouch : true;
-  @Input('invalidOnDirty') invalidOnDirty: boolean = (this.mmFormsConfig.invalidOnDirty!=null) ? this.mmFormsConfig.invalidOnDirty : false;
-  @Input('reverseLabelControl') reverseLabelControl: boolean = (this.mmFormsConfig.reverseLabelControl!=null) ? this.mmFormsConfig.reverseLabelControl : false;
+  @Input('invalidOnTouch') invalidOnTouch: boolean = this.mmFormsConfig.invalidOnTouch!;
+  @Input('invalidOnDirty') invalidOnDirty: boolean = this.mmFormsConfig.invalidOnDirty!;
+  @Input('reverseLabelControl') reverseLabelControl: boolean = this.mmFormsConfig.reverseLabelControl!;
 
   // Inputs customizations
   // General
@@ -139,11 +139,10 @@ export class MMFormField implements ControlValueAccessor {
   @Input('errorClass') errorClass?: string = this.mmFormsConfig.errorClass;
 
   // Mandatory
-  // TODO - move to default configuration
-  @Input('mandatorySymbol') mandatorySymbol?: string = this.mmFormsConfig.mandatorySymbol || '*';
-  @Input('mandatoryStyle') mandatoryStyle?: string = this.mmFormsConfig.mandatoryStyle || '';
-  @Input('mandatoryClass') mandatoryClass?: string = this.mmFormsConfig.mandatoryClass || '';
-  @Input('showMandatory') showMandatory?: boolean = (this.mmFormsConfig.showMandatory!=null) ? this.mmFormsConfig.showMandatory : true;
+  @Input('mandatorySymbol') mandatorySymbol?: string = this.mmFormsConfig.mandatorySymbol;
+  @Input('mandatoryStyle') mandatoryStyle?: string = this.mmFormsConfig.mandatoryStyle;
+  @Input('mandatoryClass') mandatoryClass?: string = this.mmFormsConfig.mandatoryClass;
+  @Input('showMandatory') showMandatory?: boolean = this.mmFormsConfig.showMandatory!;
 
   // Content query
   @ContentChild(MMFormControlDirective) formControl!: MMFormControlDirective;
@@ -167,13 +166,25 @@ export class MMFormField implements ControlValueAccessor {
     return (validator && validator?.['required']);
   }
 
-  registerOnChange(fn: any): void {
+  get showError() {
+    return (this.ngControl?.invalid && !this.invalidOnTouch && !this.invalidOnDirty)
+      || (this.ngControl?.invalid && (this.invalidOnTouch && this.ngControl?.touched))
+      || (this.ngControl?.invalid && (this.invalidOnDirty && this.ngControl?.dirty))
   }
 
-  registerOnTouched(fn: any): void {
+  get labelTemplateContext() {
+    return {
+      $implicit: this.label,
+      id: this.id || this.ngControl?.name,
+      mandatory: this.isMandatory,
+      showMandatory: this.showMandatory,
+      mandatorySymbol: this.mandatorySymbol
+    };
   }
 
-  writeValue(obj: any): void {
-  }
+  registerOnChange(fn: any): void {}
 
+  registerOnTouched(fn: any): void {}
+
+  writeValue(obj: any): void {}
 }

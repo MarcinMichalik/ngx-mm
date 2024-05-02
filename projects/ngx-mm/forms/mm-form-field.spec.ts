@@ -202,16 +202,6 @@ describe("MMFormField", () => {
           ReactiveFormsModule,
           MMFormsModule.forRoot({}, {}),
         ],
-        providers: [
-          {
-            provide: MMErrorMessageResolver,
-            useClass: MMDefaultErrorMessageResolver
-          },
-          {
-            provide: MM_FORMS_CONFIG,
-            useValue: {},
-          }
-        ],
         schemas: [],
       }).compileComponents();
       fixture = TestBed.createComponent(TestMMFormFieldComponent);

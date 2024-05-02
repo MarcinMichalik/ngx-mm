@@ -1,4 +1,4 @@
-import {InjectionToken, Input, Type} from '@angular/core';
+import {InjectionToken, Type} from '@angular/core';
 import {MMErrorMessageResolver} from '../services/mm-error-message-resolver.service';
 
 export interface MMFormsConfig {
@@ -34,4 +34,21 @@ export const MM_FORMS_CONFIG = new InjectionToken<MMFormsConfig>("MM_FORMS_CONFI
 
 export interface MMProvidersToken {
   errorMessageResolver?: Type<MMErrorMessageResolver>;
+}
+
+export const MM_FORMS_DEFAULT_CONFIG: MMFormsConfig = {
+  fieldClass: 'field',
+  style: '',
+  reverseLabelControl: false,
+  labelClass: '',
+  labelStyle: '',
+  helperClass: '',
+  helperStyle: '',
+  errorClass: '',
+  errorStyle: '',
+  mandatoryClass: '',
+  mandatorySymbol: '*',
+  showMandatory: true,
+  invalidOnTouch: true,
+  invalidOnDirty: false
 }

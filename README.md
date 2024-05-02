@@ -211,24 +211,24 @@ If providers and inputs are not enough, you can use templates to modify the comp
 #### APIs
 ##### Inputs (properties)
 | Name                  | Type    | Default | Description |
-|-----------------------|---------|---------|-------------|
-| `label`               | string  | null    | _TODO_      |
-| `id`                  | string  | null    | _TODO_      |
-| `helper`              | string  | null    | _TODO_      |
-| `invalidOnTouch`      | boolean | true    | _TODO_      |
-| `invalidOnDirty`      | boolean | false   | _TODO_      |
-| `reverseLabelControl` | boolean | false   | _TODO_      |
-| `style`               | string  | null    | _TODO_      |
-| `styleClass`          | string  | null    | _TODO_      |
-| `labelStyle`          | string  | null    | _TODO_      |
-| `labelStyleClass`     | string  | null    | _TODO_      |
-| `helperStyle`         | string  | null    | _TODO_      |
-| `helperStyleClass`    | string  | null    | _TODO_      |
-| `errorStyle`          | string  | null    | _TODO_      |
-| `errorStyleClass`     | string  | null    | _TODO_      |
-| `mandatorySymbol`     | string  | *       | _TODO_      |
-| `mandatoryStyle`      | string  | *       | _TODO_      |
-| `showMandatroy`       | boolean | true    | _TODO_      |
+|-----------------------|---------|--------|-------------|
+| `label`               | string  | ''     | _TODO_      |
+| `id`                  | string  | ''     | _TODO_      |
+| `helper`              | string  | ''     | _TODO_      |
+| `invalidOnTouch`      | boolean | true   | _TODO_      |
+| `invalidOnDirty`      | boolean | false  | _TODO_      |
+| `reverseLabelControl` | boolean | false  | _TODO_      |
+| `style`               | string  | ''     | _TODO_      |
+| `styleClass`          | string  | 'field' | _TODO_      |
+| `labelStyle`          | string  | ''     | _TODO_      |
+| `labelStyleClass`     | string  | ''     | _TODO_      |
+| `helperStyle`         | string  | ''     | _TODO_      |
+| `helperStyleClass`    | string  | ''     | _TODO_      |
+| `errorStyle`          | string  | ''       | _TODO_      |
+| `errorStyleClass`     | string  | ''   | _TODO_      |
+| `mandatorySymbol`     | string  | *      | _TODO_      |
+| `mandatoryStyle`      | string  | ''     | _TODO_      |
+| `showMandatroy`       | boolean | true   | _TODO_      |
 
 ##### Templates
 
@@ -341,23 +341,19 @@ export abstract class MMErrorMessageResolver {
 ```
 
 ## RoadMap
+* [ ] Add suport for HTML aria-*
+* [ ] consider whether a separate component for radiobutton/checkbox is needed or add template?
 * [ ] PrimeNG LazyLoadEvent parser to HttpParams and RouteParams
   * [ ] Simple parser (without matchMode)
   * [ ] Advance parser (with matchModes) - *search ideas/patterns* - focus on Spring Controllers
   * [ ] From RouteParams to filters (store state table in queryString)
 
 ## TODO
-* [ ] Add default config
-* [ ] Add default PrimeNG config
-* [ ] Add test config
-* [ ] Add default test service config
-* [ ] Try simplified, improve clean form-field
 * [ ] Finish documentation
-* [x] Test [Codecov](https://about.codecov.io/)
 * [ ] Consider GitHub actions to build and publish package
 * [ ] package.json settings for NPM (version, name, description, urls, tags/categories...)
 * [ ] Add docs page with samples/playground - ng-doc (after update to Angular 15)
-* [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables...
+* [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables... (remove src folder)
 * [ ] GitHub settings
   * Protected branch
   * Templates (issue, PR, ...)

@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MM_FORMS_CONFIG, MMFormsConfig, MMProvidersToken} from './configs/mm-config';
+import {MM_FORMS_CONFIG, MM_FORMS_DEFAULT_CONFIG, MMFormsConfig, MMProvidersToken} from './configs/mm-config';
 import {MMFormControlDirective} from './directives/mm-form-control.directive';
 import {MMFormErrorDirective} from './directives/mm-form-error.directive';
 import {MMFormHelperDirective} from './directives/mm-form-helper.directive';
@@ -39,7 +39,10 @@ export class MMFormsModule {
       providers: [
         {
           provide: MM_FORMS_CONFIG,
-          useValue: config,
+          useValue: {
+            ...MM_FORMS_DEFAULT_CONFIG,
+            ...config
+          },
         },
         {
           provide: MMErrorMessageResolver,
