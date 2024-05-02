@@ -18,9 +18,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm ci
+#      - run: npm ci
       - name: Install requirements
-        run: npm install
+        run: npm install --force
       - run: npm run ci:test
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
