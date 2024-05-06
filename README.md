@@ -351,7 +351,6 @@ export abstract class MMErrorMessageResolver {
 ## TODO
 * [ ] Finish documentation
 * [ ] Consider GitHub actions to build and publish package
-* [ ] package.json settings for NPM (version, name, description, urls, tags/categories...)
 * [ ] Add docs page with samples/playground - ng-doc (after update to Angular 15)
 * [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables... (remove src folder)
 * [ ] GitHub settings
