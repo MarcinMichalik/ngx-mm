@@ -346,3 +346,4 @@ export abstract class MMErrorMessageResolver {
 
 ## TODO
 * [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables... (remove src folder)
+* [ ] Improve doc header (logo and text)
