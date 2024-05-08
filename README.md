@@ -341,33 +341,6 @@ export abstract class MMErrorMessageResolver {
 }
 ```
 
-## RoadMap
-* [ ] Add suport for HTML aria-*
-* [ ] consider whether a separate component for radiobutton/checkbox is needed or add template?
-* [ ] PrimeNG LazyLoadEvent parser to HttpParams and RouteParams
-  * [ ] Simple parser (without matchMode)
-  * [ ] Advance parser (with matchModes) - *search ideas/patterns* - focus on Spring Controllers
-  * [ ] From RouteParams to filters (store state table in queryString)
 
 ## TODO
-* [ ] Consider GitHub actions to build and publish package
-* [ ] Add docs page with samples/playground - ng-doc (after update to Angular 15)
 * [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables... (remove src folder)
-* [ ] GitHub settings
-  * Protected branch
-  * Templates (issue, PR, ...)
-  * LICENSE
-  * CONTRIBUTING
-
-## Ideas for the future
-* LabelResolver by ngControl name (translation?)???
-  * Prefix key - how?
-* Try extends @angular/form (label, mandatory?...)
-* DynamicDialog wrapper - ?
-* ...
-
-# Documentation tools to check
-* [Docusaurus](https://docusaurus.io/)
-* [StoryBook](https://storybook.js.org/)
-* !!! [ng-doc](https://ng-doc.com/)
-* [compodoc](https://compodoc.app/)
