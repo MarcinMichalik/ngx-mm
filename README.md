@@ -1,13 +1,12 @@
-# ngx-mm
-
 <br />
 <p align="center">
- <img width="50%" height="50%" src="./logo-design/logo-svg/ngx-mm_sm.svg">
+ <img width="50%" height="50%" src="./logo-design/logo-svg/ngx-mm_full_color.svg">
 </p>
-
+<p align="center">
+  ngx-mm is an Angular developers toolkit for simplified Angular application development
+</p>
 <h2></h2>
 
-ngx-mm is an Angular developers toolkit for simplified Angular application development.
 
 I develop many applications and notice a lot of repeating patterns that I decided to move to a separate library. You can see a lot of connection to PrimeNG as I mainly use it in my Angular applications. If you see potential to be used with another library, don't hesitate to use it. If you find a bug or have an idea for improvement, you can create an issue with a good description.
 
@@ -342,7 +341,3 @@ export abstract class MMErrorMessageResolver {
 
 }
 ```
-
-
-## TODO
-* [ ] Improve doc header (logo and text)
