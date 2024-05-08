@@ -11,6 +11,8 @@ ngx-mm is an Angular developers toolkit for simplified Angular application devel
 
 I develop many applications and notice a lot of repeating patterns that I decided to move to a separate library. You can see a lot of connection to PrimeNG as I mainly use it in my Angular applications. If you see potential to be used with another library, don't hesitate to use it. If you find a bug or have an idea for improvement, you can create an issue with a good description.
 
+[![codecov](https://codecov.io/gh/MarcinMichalik/ngx-mm/graph/badge.svg?token=sNvelLkcGO)](https://codecov.io/gh/MarcinMichalik/ngx-mm)
+
 ## Installation
 
 ```Shell
