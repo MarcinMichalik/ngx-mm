@@ -210,25 +210,26 @@ If providers and inputs are not enough, you can use templates to modify the comp
 
 #### APIs
 ##### Inputs (properties)
-| Name                  | Type    | Default | Description |
-|-----------------------|---------|--------|-------------|
-| `label`               | string  | ''     | _TODO_      |
-| `id`                  | string  | ''     | _TODO_      |
-| `helper`              | string  | ''     | _TODO_      |
-| `invalidOnTouch`      | boolean | true   | _TODO_      |
-| `invalidOnDirty`      | boolean | false  | _TODO_      |
-| `reverseLabelControl` | boolean | false  | _TODO_      |
-| `style`               | string  | ''     | _TODO_      |
-| `styleClass`          | string  | 'field' | _TODO_      |
-| `labelStyle`          | string  | ''     | _TODO_      |
-| `labelStyleClass`     | string  | ''     | _TODO_      |
-| `helperStyle`         | string  | ''     | _TODO_      |
-| `helperStyleClass`    | string  | ''     | _TODO_      |
-| `errorStyle`          | string  | ''       | _TODO_      |
-| `errorStyleClass`     | string  | ''   | _TODO_      |
-| `mandatorySymbol`     | string  | *      | _TODO_      |
-| `mandatoryStyle`      | string  | ''     | _TODO_      |
-| `showMandatroy`       | boolean | true   | _TODO_      |
+| Name                  | Type    | Default | Description                                                                                       |
+|-----------------------|---------|--------|---------------------------------------------------------------------------------------------------|
+| `label`               | string  | ''     | Form field label                                                                                  |
+| `id`                  | string  | ''     | Unique identifier of form field ("for" use case)                                                  |
+| `helper`              | string  | ''     | Help text for form field                                                                          |
+| `invalidOnTouch`      | boolean | true   | Show invalid state when form field is touched (use `invalidOnTouch` or `invalidOnDirty` not both) |
+| `invalidOnDirty`      | boolean | false  | Show invalid state when form field is dirty (use `invalidOnTouch` or `invalidOnDirty` not both)   |
+| `reverseLabelControl` | boolean | false  | Reverse order of label and control form                                                           |
+| `style`               | string  | ''     | Inline style of field                                                                             |
+| `styleClass`          | string  | 'field' | Style class of field                                                                              |
+| `labelStyle`          | string  | ''     | Inline style of label                                                                             |
+| `labelStyleClass`     | string  | ''     | Style class of label                                                                              |
+| `helperStyle`         | string  | ''     | Inline style of helper                                                                            |
+| `helperStyleClass`    | string  | ''     | Style class of helper                                                                             |
+| `errorStyle`          | string  | ''       | Inline style of error                                                                             |
+| `errorStyleClass`     | string  | ''   | Style class of error                                                                              |
+| `mandatorySymbol`     | string  | *      | Symbol of mandatory                                                                               |
+| `mandatoryStyle`      | string  | ''     | Inline style of mandatory                                                                         |
+| `mandatoryClass` | string | '' | Style class of mandatory                                                                          |
+| `showMandatroy`       | boolean | true   | When present show mandatory symbol if form contorol has required validator                        |
 
 ##### Templates
 
@@ -349,7 +350,6 @@ export abstract class MMErrorMessageResolver {
   * [ ] From RouteParams to filters (store state table in queryString)
 
 ## TODO
-* [ ] Finish documentation
 * [ ] Consider GitHub actions to build and publish package
 * [ ] Add docs page with samples/playground - ng-doc (after update to Angular 15)
 * [ ] Organize files for test and build - target ngx-mm/forms, ngx-mm/tables... (remove src folder)
