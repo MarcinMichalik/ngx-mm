@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "ci:test": "ng test ngx-mm --no-watch --no-progress --browsers=ChromeHeadless --code-coverage"
+    "ci:test": "ng test ngx-mm --no-watch --no-progress --browsers=ChromeHeadless --code-coverage",
+    "publish": "ng build ngx-mm && npm publish dist/ngx-mm "
   },
   "private": true,
   "dependencies": {
