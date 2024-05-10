@@ -10,9 +10,32 @@
       "prefix": "mm",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@ng-doc/builder:browser",
           "options": {
-            "project": "projects/ngx-mm/ng-package.json"
+            "project": "projects/ngx-mm/ng-package.json",
+            "styles": [
+              "node_modules/@ng-doc/app/styles/global.css"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/@ng-doc/app/assets",
+                "output": "assets/ng-doc/app"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@ng-doc/ui-kit/assets",
+                "output": "assets/ng-doc/ui-kit"
+              },
+              {
+                "glob": "**/*",
+                "input": ".ng-doc/undefined/assets",
+                "output": "assets/ng-doc"
+              }
+            ],
+            "allowedCommonJsDependencies": [
+              "@ng-doc/core"
+            ]
           },
           "configurations": {
             "production": {
