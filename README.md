@@ -11,6 +11,21 @@
 
 I develop many applications and notice a lot of repeating patterns that I decided to move to a separate library. You can see a lot of connection to PrimeNG as I mainly use it in my Angular applications. If you see potential to be used with another library, don't hesitate to use it. If you find a bug or have an idea for improvement, you can create an issue with a good description.
 
+## Versioning
+`x.y.z`
+
+* `x` - Angular version
+* `y` - Generally add new feature(s). It can be breaking changes
+* `z` - Fixes
+
+### Example
+
+|Angular|ngx-mm| Comments                            |
+|---|---|-------------------------------------|
+|14.x|14.x.x| ...                                 |
+|15.x|15.x.x| ...                                 |
+|15.x|15.x.2| Fix to suppor                       |
+|15.x|15.2.x| Breaking changes or add new feature |
 
 ## Installation
 
