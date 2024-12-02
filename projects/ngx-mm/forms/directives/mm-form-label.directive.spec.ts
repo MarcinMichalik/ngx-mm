@@ -3,11 +3,12 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MMFormLabelDirective} from './mm-form-label.directive';
 
 @Component({
-  template: `
+    template: `
     <ng-template mmFormLabel>
       <small id="error">Error</small>
     </ng-template>
-  `
+  `,
+    standalone: false
 })
 class TestComponent {
   @ViewChild(MMFormLabelDirective, {static: true}) formLabel!: MMFormLabelDirective;

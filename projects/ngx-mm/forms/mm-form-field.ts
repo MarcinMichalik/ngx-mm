@@ -24,8 +24,8 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
 };
 
 @Component({
-  selector: 'mm-form-field',
-  template: `
+    selector: 'mm-form-field',
+    template: `
     <div [ngClass]="styleClass" [style]="style">
       <ng-template #label>
         <ng-container [ngTemplateOutlet]="formLabel?.templateRef || defaultLabelTemplate"
@@ -106,8 +106,9 @@ const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
       </small>
     </ng-template>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class MMFormField implements ControlValueAccessor {
   // Angular v15 - standalone is stable!!!!

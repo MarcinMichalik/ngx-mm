@@ -1,7 +1,8 @@
 import {Directive, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[mmFormControl]'
+    selector: '[mmFormControl]',
+    standalone: false
 })
 export class MMFormControlDirective {
 

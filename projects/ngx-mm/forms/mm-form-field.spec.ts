@@ -7,7 +7,7 @@ import {MMFormsModule} from './mm-forms.module';
 import {MMDefaultErrorMessageResolver, MMErrorMessageResolver} from './services/mm-error-message-resolver.service';
 
 @Component({
-  template: `
+    template: `
     <form [formGroup]="formGroup">
       <mm-form-field formControlName="firstName" label="First name" helper="Your first name">
         <ng-template mmFormControl let-control>
@@ -15,7 +15,8 @@ import {MMDefaultErrorMessageResolver, MMErrorMessageResolver} from './services/
         </ng-template>
       </mm-form-field>
     </form>
-  `
+  `,
+    standalone: false
 })
 class TestMMFormFieldComponent {
 
@@ -33,7 +34,7 @@ class TestMMFormFieldComponent {
 }
 
 @Component({
-  template: `
+    template: `
     <form [formGroup]="formGroup">
       <mm-form-field formControlName="firstName"
                      [label]="label"
@@ -59,7 +60,8 @@ class TestMMFormFieldComponent {
         </ng-template>
       </mm-form-field>
     </form>
-  `
+  `,
+    standalone: false
 })
 class InputTestMMFormFieldComponent {
 
@@ -106,7 +108,7 @@ class InputTestMMFormFieldComponent {
 }
 
 @Component({
-  template: `
+    template: `
     <form [formGroup]="formGroup">
       <mm-form-field formControlName="firstName" label="MyLabel" helper="MyHelper">
         <ng-template mmFormLabel let-label
@@ -141,7 +143,8 @@ class InputTestMMFormFieldComponent {
         </ng-template>
       </mm-form-field>
     </form>
-  `
+  `,
+    standalone: false
 })
 class TemplateTestMMFormFieldComponent {
 

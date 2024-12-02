@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import {NavbarComponent} from '../../layout/navbar/navbar.component';
 
 @Component({
-  selector: 'app-landing',
-  standalone: true,
-  imports: [CommonModule, NavbarComponent],
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+    selector: 'app-landing',
+    imports: [CommonModule, NavbarComponent],
+    templateUrl: './landing.component.html',
+    styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
 

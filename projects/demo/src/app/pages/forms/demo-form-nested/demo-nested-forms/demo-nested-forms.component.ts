@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-demo-nested-forms',
-  templateUrl: './demo-nested-forms.component.html',
-  styleUrls: ['./demo-nested-forms.component.scss']
+    selector: 'app-demo-nested-forms',
+    templateUrl: './demo-nested-forms.component.html',
+    styleUrls: ['./demo-nested-forms.component.scss'],
+    standalone: false
 })
 export class DemoNestedFormsComponent implements OnInit {
 

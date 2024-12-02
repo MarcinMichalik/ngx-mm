@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'app-code',
-  templateUrl: './code.component.html',
-  styleUrls: ['./code.component.scss']
+    selector: 'app-code',
+    templateUrl: './code.component.html',
+    styleUrls: ['./code.component.scss'],
+    standalone: false
 })
 export class CodeComponent implements AfterViewInit {
 

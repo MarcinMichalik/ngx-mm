@@ -3,11 +3,12 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MMFormErrorDirective} from './mm-form-error.directive';
 
 @Component({
-  template: `
+    template: `
     <ng-template mmFormError>
       <small id="error">Error</small>
     </ng-template>
-  `
+  `,
+    standalone: false
 })
 class TestComponent {
   @ViewChild(MMFormErrorDirective, {static: true}) formError!: MMFormErrorDirective;

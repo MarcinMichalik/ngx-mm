@@ -1,7 +1,8 @@
 import {Directive, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[mmFormMandatory]'
+    selector: '[mmFormMandatory]',
+    standalone: false
 })
 export class MMFormMandatoryDirective {
 

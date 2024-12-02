@@ -1,7 +1,8 @@
 import {Directive, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[mmFormHelper]'
+    selector: '[mmFormHelper]',
+    standalone: false
 })
 export class MMFormHelperDirective {
 

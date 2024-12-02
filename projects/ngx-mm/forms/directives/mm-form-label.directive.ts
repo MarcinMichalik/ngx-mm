@@ -1,7 +1,8 @@
 import {Directive, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[mmFormLabel]'
+    selector: '[mmFormLabel]',
+    standalone: false
 })
 export class MMFormLabelDirective {
 

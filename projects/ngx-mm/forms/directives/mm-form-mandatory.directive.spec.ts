@@ -3,11 +3,12 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MMFormMandatoryDirective} from './mm-form-mandatory.directive';
 
 @Component({
-  template: `
+    template: `
     <ng-template mmFormMandatory>
       <small id="error">Error</small>
     </ng-template>
-  `
+  `,
+    standalone: false
 })
 class TestComponent {
   @ViewChild(MMFormMandatoryDirective, {static: true}) formMandatory!: MMFormMandatoryDirective;

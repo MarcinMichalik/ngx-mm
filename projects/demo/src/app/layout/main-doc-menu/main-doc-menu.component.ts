@@ -5,11 +5,10 @@ import {RippleModule} from 'primeng/ripple';
 import {StyleClassModule} from 'primeng/styleclass';
 
 @Component({
-  selector: 'app-main-doc-menu',
-  standalone: true,
-  imports: [CommonModule, RippleModule, StyleClassModule, RouterLink],
-  templateUrl: './main-doc-menu.component.html',
-  styleUrls: ['./main-doc-menu.component.scss']
+    selector: 'app-main-doc-menu',
+    imports: [CommonModule, RippleModule, StyleClassModule, RouterLink],
+    templateUrl: './main-doc-menu.component.html',
+    styleUrls: ['./main-doc-menu.component.scss']
 })
 export class MainDocMenuComponent implements OnInit {
 
