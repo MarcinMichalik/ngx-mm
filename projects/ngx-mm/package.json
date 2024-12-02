@@ -1,6 +1,6 @@
 {
   "name": "ngx-mm",
-  "version": "18.0.0",
+  "version": "19.0.0",
   "description": "Developer toolkit for Angular applications",
   "keywords": [
     "angular",
@@ -27,8 +27,8 @@
     "url": "https://github.com/MarcinMichalik/ngx-mm"
   },
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
